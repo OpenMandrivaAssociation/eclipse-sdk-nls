@@ -1,8 +1,9 @@
 %define eclipse_base	%{_datadir}/eclipse
+%define gcj_support     1
 
 Name:		eclipse-sdk-nls
 Version:	3.2.1
-Release:	%mkrel 3.1
+Release:	%mkrel 3.2
 Summary:	Eclipse language packs for the Eclipse SDK
 Group:		Development/Java
 License:	Eclipse Public License
@@ -19,7 +20,14 @@ BuildRequires:	dos2unix
 
 Requires:	eclipse-rcp
 
-BuildArch:	noarch
+%if %{gcj_support}
+Requires(post): java-gcj-compat
+Requires(postun): java-gcj-compat
+BuildRequires:  java-gcj-compat-devel
+%else
+BuildArch:      noarch
+BuildRequires:  java-devel
+%endif
 
 %package cs
 Summary:		Eclipse SDK language pack for Czech
@@ -372,68 +380,284 @@ find $RPM_BUILD_ROOT%{eclipse_base}/plugins -name *.ac_* -delete
 find $RPM_BUILD_ROOT%{eclipse_base}/features -maxdepth 1 -type d \
 	-name *.ac_* -exec rm -rf '{}' \; 
 
+%if %{gcj_support}
+%{_bindir}/aot-compile-rpm
+%endif
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%if %{gcj_support}
+%post cs
+%{update_gcjdb}
+
+%postun cs
+%{clean_gcjdb}
+
+%post hu
+%{update_gcjdb}
+
+%postun hu
+%{clean_gcjdb}
+
+%post pl
+%{update_gcjdb}
+
+%postun pl
+%{clean_gcjdb}
+
+%post ru
+%{update_gcjdb}
+
+%postun ru
+%{clean_gcjdb}
+
+%post ar
+%{update_gcjdb}
+
+%postun ar
+%{clean_gcjdb}
+
+%post iw
+%{update_gcjdb}
+
+%postun iw
+%{clean_gcjdb}
+
+%post da
+%{update_gcjdb}
+
+%postun da
+%{clean_gcjdb}
+
+%post de
+%{update_gcjdb}
+
+%postun de
+%{clean_gcjdb}
+
+%post el
+%{update_gcjdb}
+
+%postun el
+%{clean_gcjdb}
+
+%post es
+%{update_gcjdb}
+
+%postun es
+%{clean_gcjdb}
+
+%post fi
+%{update_gcjdb}
+
+%postun fi
+%{clean_gcjdb}
+
+%post fr
+%{update_gcjdb}
+
+%postun fr
+%{clean_gcjdb}
+
+%post it
+%{update_gcjdb}
+
+%postun it
+%{clean_gcjdb}
+
+%post ja
+%{update_gcjdb}
+
+%postun ja
+%{clean_gcjdb}
+
+%post ko
+%{update_gcjdb}
+
+%postun ko
+%{clean_gcjdb}
+
+%post nl
+%{update_gcjdb}
+
+%postun nl
+%{clean_gcjdb}
+
+%post no
+%{update_gcjdb}
+
+%postun no
+%{clean_gcjdb}
+
+%post pt
+%{update_gcjdb}
+
+%postun pt
+%{clean_gcjdb}
+
+%post sv
+%{update_gcjdb}
+
+%postun sv
+%{clean_gcjdb}
+
+%post tr
+%{update_gcjdb}
+
+%postun tr
+%{clean_gcjdb}
+
+%post zh
+%{update_gcjdb}
+
+%postun zh
+%{clean_gcjdb}
+%endif
+
 %files cs -f cs.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.cs_*
+%endif
 
 %files hu -f hu.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.hu_*
+%endif
 
 %files pl -f pl.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.pl_*
+%endif
 
 %files ru -f ru.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.ru_*
+%endif
 
 %files ar -f ar.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.ar_*
+%endif
 
 %files iw -f iw.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.iw_*
+%endif
 
 %files da -f da.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.da_*
+%endif
 
 %files de -f de.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.de_*
+%endif
 
 %files el -f el.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.el_*
+%endif
 
 %files es -f es.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.es_*
+%endif
 
 %files fi -f fi.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.fi_*
+%endif
 
 %files fr -f fr.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.fr_*
+%endif
 
 %files it -f it.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.it_*
+%endif
 
 %files ja -f ja.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.ja_*
+%endif
 
 %files ko -f ko.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.ko_*
+%endif
 
 %files nl -f nl.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.nl_*
+%endif
 
 %files no -f no.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.no_*
+%endif
 
 %files pt -f pt.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.pt_*
+%endif
 
 %files sv -f sv.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.sv_*
+%endif
 
 %files tr -f tr.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.tr_*
+%endif
 
 %files zh -f zh.files
-%defattr(-,root,root)
+%defattr(0644,root,root,0755)
+%if %{gcj_support}
+%dir %{_libdir}/gcj/%{name}
+%attr(-,root,root) %{_libdir}/gcj/%{name}/*.zh_*
+%endif
