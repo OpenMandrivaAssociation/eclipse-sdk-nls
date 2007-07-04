@@ -1,5 +1,5 @@
 %define eclipse_base	%{_datadir}/eclipse
-%define gcj_support     1
+%define gcj_support     0
 
 Name:		eclipse-sdk-nls
 Version:	3.2.1
@@ -233,6 +233,10 @@ install -d -m 755 $RPM_BUILD_ROOT%{eclipse_base}/plugins \
 cp -p -r langpacks/eclipse $RPM_BUILD_ROOT%{eclipse_base}/..
 
 
+%if %{gcj_support}
+%{_bindir}/aot-compile-rpm
+%endif
+
 # Find all corresponding feature/plugin files and list then in a file
 # to tag them as files.
  
@@ -379,10 +383,6 @@ find $RPM_BUILD_ROOT%{eclipse_base}/plugins -name *.ac_* -delete
 
 find $RPM_BUILD_ROOT%{eclipse_base}/features -maxdepth 1 -type d \
 	-name *.ac_* -exec rm -rf '{}' \; 
-
-%if %{gcj_support}
-%{_bindir}/aot-compile-rpm
-%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
