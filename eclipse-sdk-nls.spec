@@ -13,7 +13,6 @@ Source0:	http://download.eclipse.org/eclipse/downloads/drops/L-3.2.1_Language_Pa
 Source1:	http://download.eclipse.org/eclipse/downloads/drops/L-3.2.1_Language_Packs-200609210945/NLpack2-eclipse-SDK-3.2.1-gtk.zip
 Source2:	http://download.eclipse.org/eclipse/downloads/drops/L-3.2.1_Language_Packs-200609210945/NLpack2a-eclipse-SDK-3.2.1-gtk.zip
 Source3:	http://download.eclipse.org/eclipse/downloads/drops/L-3.2.1_Language_Packs-200609210945/NLpackBidi-eclipse-SDK-3.2.1-gtk.zip
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 BuildRequires:	eclipse-nlspackager
 BuildRequires:	dos2unix
