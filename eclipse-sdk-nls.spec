@@ -3,7 +3,7 @@
 
 Name:		eclipse-sdk-nls
 Version:	3.2.1
-Release:	%mkrel 3.2.0
+Release:	%mkrel 3.2.1
 Summary:	Eclipse language packs for the Eclipse SDK
 Group:		Development/Java
 License:	Eclipse Public License
@@ -21,8 +21,6 @@ BuildRequires:	dos2unix
 Requires:	eclipse-rcp
 
 %if %{gcj_support}
-Requires(post): java-gcj-compat
-Requires(postun): java-gcj-compat
 BuildRequires:  java-gcj-compat-devel
 %else
 BuildArch:      noarch
