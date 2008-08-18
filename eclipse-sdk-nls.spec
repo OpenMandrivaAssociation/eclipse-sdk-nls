@@ -24,8 +24,8 @@ Requires:	eclipse-rcp
 BuildRequires:  java-gcj-compat-devel
 %else
 BuildArch:      noarch
-BuildRequires:  java-devel
 %endif
+BuildRequires:  java-rpmbuild
 
 %package cs
 Summary:		Eclipse SDK language pack for Czech
