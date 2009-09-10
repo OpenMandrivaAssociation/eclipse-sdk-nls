@@ -3,7 +3,7 @@
 
 Name:		eclipse-sdk-nls
 Version:	3.2.1
-Release:	%mkrel 3.2.1
+Release:	%mkrel 3.2.2
 Summary:	Eclipse language packs for the Eclipse SDK
 Group:		Development/Java
 License:	Eclipse Public License
