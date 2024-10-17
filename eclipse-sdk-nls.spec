@@ -7,7 +7,7 @@ Release:	%mkrel 3.2.2
 Summary:	Eclipse language packs for the Eclipse SDK
 Group:		Development/Java
 License:	Eclipse Public License
-URL:		http://eclipse.org
+URL:		https://eclipse.org
 
 Source0:	http://download.eclipse.org/eclipse/downloads/drops/L-3.2.1_Language_Packs-200609210945/NLpack1-eclipse-SDK-3.2.1-gtk.zip
 Source1:	http://download.eclipse.org/eclipse/downloads/drops/L-3.2.1_Language_Packs-200609210945/NLpack2-eclipse-SDK-3.2.1-gtk.zip
